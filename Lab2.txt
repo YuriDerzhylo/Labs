@@ -1,0 +1,32 @@
+#include <iostream> 
+#include <time.h>
+#include <windows.h>
+#include <iomanip>
+
+
+using namespace std;
+void main() {
+	srand(time(NULL));
+
+	const int SIZE = 10;
+	int ar[SIZE], average = 0,count = 0;
+	for (int d = 0; d < SIZE; d++) 
+	{
+		ar[d] = rand() % 10;
+	}
+	for (int i = 0; i < SIZE; i++) 
+	{
+		if (i % 2 == 1)
+		{
+			average += ar[i];
+			count++;
+		}
+		cout << " " << ar[i];
+	}
+	cout << endl;
+	average /= count;
+	cout << "Average" << average << endl;
+	
+
+	system("pause");
+}

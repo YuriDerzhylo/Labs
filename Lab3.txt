@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+ 
+int main()
+{
+   printf("input text: ");
+   char text[1024];
+   fgets(text, sizeof(text)-1, stdin);
+ 
+   char* pmax = NULL;
+   size_t pmaxlen = 0;
+ 
+   char* pmin = NULL;
+   size_t pminlen = 0;
+ 
+   char* begin = text;
+   char* end = text;
+ 
+   while (*end)
+   {
+      for (begin = end; *begin && !isalnum(*begin); ++begin) { ; }
+ 
+      for (end = begin; *end && isalnum(*end); ++end) { ; }
+ 
+      if (begin < end)
+      {
+         if ((pmax == NULL) || (pmaxlen < end - begin))
+         {
+            pmax = begin;
+            pmaxlen = end - begin;
+         }
+         if ((pmin == NULL) || (pminlen > end - begin))
+         {
+            pmin = begin;
+            pminlen = end - begin;
+         }
+      }
+   }
+   if (pmax && pmin)
+   {
+      printf("\n");
+      printf("max = %.*s\n", pmaxlen, pmax);
+      printf("min = %.*s\n", pminlen, pmin);
+   }
+ 
+   system("pause");
+ 
+   return 0;
+}
